@@ -1,0 +1,24 @@
+# Fdb version 3
+["bibtex paper"] 1475910927 "paper.aux" "paper.bbl" "paper" 1475910966
+  "jplain.bst" 0 -1 0 ""
+  "paper.aux" 1475910966 120 6e6d0f018049cb6566908b0bd03c4e6d ""
+  "paper.bcf" 0 -1 0 ""
+  "paper.bib" 1475907354 205 b07003b01a9a82b14414f1ade08cebb0 ""
+  (generated)
+  "paper.bbl"
+  "paper.blg"
+["dvipdf"] 1475910966 "paper.dvi" "paper.pdf" "paper" 1475910966
+  "paper.dvi" 1475910966 752 c399fff6ae218718bc27d468ec5eb995 "latex"
+  (generated)
+  "paper.pdf"
+["latex"] 1475910966 "paper.tex" "paper.dvi" "paper" 1475910966
+  "/usr/share/texlive/texmf-dist/tex/platex/base/jarticle.cls" 1274206740 25507 0e6187042be739768097a38c29341b37 ""
+  "/usr/share/texlive/texmf-dist/tex/platex/base/jsize10.clo" 1274206740 9588 b611516b14eca6f3c9322f65167c7c24 ""
+  "jtygm.sty" 1475909094 5098 5ac78a783a0156b915a7f5d1c206f626 ""
+  "paper.aux" 1475910966 120 6e6d0f018049cb6566908b0bd03c4e6d ""
+  "paper.bbl" 1475910927 203 04ebbb331857e0907cd67a190e18ac33 "bibtex paper"
+  "paper.tex" 1475910964 601 0f8efe9ab9fca063618d3faa09e5c8cb ""
+  (generated)
+  "paper.aux"
+  "paper.log"
+  "paper.dvi"

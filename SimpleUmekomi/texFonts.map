@@ -1,0 +1,60 @@
+% 参考1
+% http://nanase.hatenablog.jp/entry/2013/08/09/023416
+
+rml-jis H ipaexm.ttf
+gbm-jis H ipaexg.ttf
+
+rml H :0:ipaexm.ttf
+gbm H :0:ipaexg.ttf
+rmlv V :0:ipaexm.ttf
+gbmv V :0:ipaexg.ttf
+
+otf-ujmr-h    UniJIS-UTF16-H  ipaexm.ttf
+otf-ujmr-v    UniJIS-UTF16-V  ipaexm.ttf
+otf-cjmr-h    Identity-H      ipaexm.ttf/AJ16
+otf-cjmr-v    Identity-V      ipaexm.ttf/AJ16
+hminr-h       H               ipaexm.ttf
+hminr-v       V               ipaexm.ttf
+otf-ujgr-h    UniJIS-UTF16-H  ipaexg.ttf
+otf-ujgr-v    UniJIS-UTF16-V  ipaexg.ttf
+otf-cjgr-h    Identity-H      ipaexg.ttf/AJ16
+otf-cjgr-v    Identity-V      ipaexg.ttf/AJ16
+hgothr-h      H               ipaexg.ttf
+hgothr-v      V               ipaexg.ttf
+
+unijmin-h       UniJIS-UTF16-H  ipaexm.ttf
+unijmin-v       UniJIS-UTF16-V  ipaexm.ttf
+unijgoth-h      UniJIS-UTF16-H  ipaexg.ttf
+unijgoth-v      UniJIS-UTF16-V  ipaexg.ttf
+
+cidmin-h        Identity-H      ipaexm.ttf/AJ16
+cidmin-v        Identity-V      ipaexm.ttf/AJ16
+cidgoth-h       Identity-H      ipaexg.ttf/AJ16
+cidgoth-v       Identity-V      ipaexg.ttf/AJ16
+
+% 参考2
+% http://nanase.hatenablog.jp/entry/2013/08/09/023416
+
+% %%  texFonts.map  dvipdfmx font map
+% % Usage:  dvipdfmx -f texFonts.map  (DVI-file)
+% %%%%%  :0: for embedding
+% % c.f. http://www6.atwiki.jp/unixcafe/pages/51.html
+% % To check  font list:  pdffonts text.pdf 
+
+% %%% Ryumin and GothicBBB : Linun/Unix/PostScript printers
+% %rml  H Ryumin-Light
+% %gbm  H GothicBBB-Medium
+% %rmlv V Ryumin-Light
+% %gbmv V GothicBBB-Medium
+
+% %%% IPA-fonts
+% rml  H :0:ipam.ttf
+% gbm  H :0:ipag.ttf
+% rmlv V :0:ipam.ttf 
+% gbmv V :0:ipag.ttf
+
+% %%% MS-fonts: Windows
+% %rml  H :0:msmincho
+% %gbm  H :0:msgothic
+% %rmlv V :0:msmincho
+% %gbmv V :0:msgothic

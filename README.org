@@ -1,0 +1,160 @@
+* environment
+** OS
+Ubuntu
+** editor
+emacs
+** viewer
+evince
+* ファイルの説明
+** *.tex
+pdfにしたい文章を書き込む
+** *.sty
+\usepackage{}で使いたいスタイルの本体．
+** *.cls
+\document{}で使いたいクラスの本体．文章の種類や形式の指定をする．
+** *.log
+ログファイル
+** *.toc
+目次ファイル
+** *.aux
+補助ファイル
+** *.dvi
+1DVIファイル
+** *.bib
+参考文献データベースファイル
+** *.bst
+参考文献の表示形式の定義ファイル
+** *.bbl
+参考文献ファイル
+** *.blg
+参考文献のログファイル?
+** *.pdf
+作成されるpdfファイル
+* tex -> pdfへの流れ
+./texProcess.svgを見ること．
+* yatexの使い方
+** C-c C-b SPC
+\begin{}が出てきて補完ができる．
+** C-c C-t j
+pdf作成まで自動でしてpdfファイルの表示もする．
+** C-c =
+アウトラインを表示。選んだセクションなどへジャンプできる．
+** C-c [
+bibliographyやbibファイルなどからciteを挿入．
+** C-c (
+ラベルをつける．
+** C-c )
+refで参照する．
+** C-c &
+対応するラベルを参照．
+* 簡単なpdfファイルの作成(./Simple/)
+** 必要なもの
+*** ./paper.tex
+論文の本体
+** コンパイル
+*** tex -> dvi
+#+BEGIN_SRC sh
+[14:06:21]hiro@hiro-VirtualBox:Simple$ ls
+paper.tex
+[14:06:26]hiro@hiro-VirtualBox:Simple$ platex paper.tex
+[14:06:55]hiro@hiro-VirtualBox:Simple$ ls
+paper.aux  paper.dvi  paper.log  paper.tex
+#+END_SRC
+**** paper.aux
+補助ファイル．参照文献を組み込むときに使う．
+**** paper.dvi
+pdfファイルを作成するのに必要なファイル．
+**** paper.log
+ログファイル
+*** dvi -> pdf
+#+BEGIN_SRC sh
+[14:07:13]hiro@hiro-VirtualBox:Simple$ dvipdfmx paper.dvi
+[14:11:10]hiro@hiro-VirtualBox:Simple$ ls
+paper.aux  paper.dvi  paper.log  paper.pdf  paper.tex
+#+END_SRC
+*** pdfファイルを見る
+#+BEGIN_SRC sh
+[14:07:13]hiro@hiro-VirtualBox:Simple$ dvipdfmx paper.dvi
+#+END_SRC
+*** 文字の埋め込み確認
+#+BEGIN_SRC sh
+[14:12:36]hiro@hiro-VirtualBox:Simple$ pdffonts paper.pdf
+name                                 type              encoding         emb sub uni object ID
+------------------------------------ ----------------- ---------------- --- --- --- ---------
+FYLVZW+CMR10                         Type 1C           Builtin          yes yes no       4  0
+Ryumin-Light-Identity-H              CID Type 0        Identity-H       no  no  no       6  0
+VFSQTD+CMSY10                        Type 1C           Builtin          yes yes no       7  0
+KIMKVE+CMMI10                        Type 1C           Builtin          yes yes no       8  0
+#+END_SRC
+Ryumin-Light-Identity-Hが埋め込まれていない
+** 改善すべきところ
+文字の埋め込みがされていない
+* 文字の埋め込みがされている簡単なpdfファイルの作成(./SimpleUmekomi/)
+** texFonts.mapの作成([[http://www.math.kobe-u.ac.jp/~kodama/tips-latex-pdf-embedding.html][参考1]], [[http://nanase.hatenablog.jp/entry/2013/08/09/023416][参考2]])
+参考2を利用した．
+otf-ipaexfontがなかったため別のパッケージを入れた．
+#+BEGIN_SRC sh
+%%  texFonts.map  dvipdfmx font map
+% Usage:  dvipdfmx -f texFonts.map  (DVI-file)
+% To check  font list:  pdffonts text.pdf
+
+rml-jis H ipaexm.ttf
+gbm-jis H ipaexg.ttf
+
+rml H :0:ipaexm.ttf
+gbm H :0:ipaexg.ttf
+rmlv V :0:ipaexm.ttf
+gbmv V :0:ipaexg.ttf
+
+otf-ujmr-h    UniJIS-UTF16-H  ipaexm.ttf
+otf-ujmr-v    UniJIS-UTF16-V  ipaexm.ttf
+otf-cjmr-h    Identity-H      ipaexm.ttf/AJ16
+otf-cjmr-v    Identity-V      ipaexm.ttf/AJ16
+hminr-h       H               ipaexm.ttf
+hminr-v       V               ipaexm.ttf
+otf-ujgr-h    UniJIS-UTF16-H  ipaexg.ttf
+otf-ujgr-v    UniJIS-UTF16-V  ipaexg.ttf
+otf-cjgr-h    Identity-H      ipaexg.ttf/AJ16
+otf-cjgr-v    Identity-V      ipaexg.ttf/AJ16
+hgothr-h      H               ipaexg.ttf
+hgothr-v      V               ipaexg.ttf
+
+unijmin-h       UniJIS-UTF16-H  ipaexm.ttf
+unijmin-v       UniJIS-UTF16-V  ipaexm.ttf
+unijgoth-h      UniJIS-UTF16-H  ipaexg.ttf
+unijgoth-v      UniJIS-UTF16-V  ipaexg.ttf
+
+cidmin-h        Identity-H      ipaexm.ttf/AJ16
+cidmin-v        Identity-V      ipaexm.ttf/AJ16
+cidgoth-h       Identity-H      ipaexg.ttf/AJ16
+cidgoth-v       Identity-V      ipaexg.ttf/AJ16
+#+END_SRC
+
+参考1で使っているipam.ttfは，
+
+./usr/share/texlive/texmf-dist/fonts/truetype/public/ipaex/ipam.ttf
+
+にあった．
+*** 方法1 : コマンドで指定
+dvipdfmx -f texFonts.map paper.dvi
+*** 方法2 : texの中で指定
+以下をpaper.texの先頭に書き込む
+#+BEGIN_SRC sh
+%% LaTeX 文書ファイルの先頭辺りに special コマンドで読み込みを指定する
+\AtBeginDvi{\special{pdf:mapfile texFonts.map}}
+#+END_SRC
+*** 方法3 : emacsのやてふに自動で埋め込みをさせる
+理由はわからないが今のemacsの設定で「C-c C-t j」をして生成されたpdfファイルは埋め込みができていた
+** 結論
+やてふの自動埋め込みに頼らずmakefileを利用するならtexの中で指定するのが良さそう．
+
+論文を提出するときにtexの中のtexFonts.mapの記述をコメントアウトを外してコンパイルすれば良い．
+
+* 文献込みの簡単なpdfファイルの作成(./SimpleBunken/)
+直接文献を書くか，bibファイルを利用する方法がある．
+bibを利用するときには警告をなくすためにjtygm.styが必要である．
+* 目次込みの簡単なpdfファイルの作成(./SimpleMokuzi/)
+\tableofcontentsを使う
+* これまでのまとめ(./SimpleMatome/)
+今まで挙げたものをまとめたもの
+

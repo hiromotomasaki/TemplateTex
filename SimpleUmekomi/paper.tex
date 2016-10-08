@@ -1,0 +1,12 @@
+%% LaTeX 文書ファイルの先頭辺りに special コマンドで読み込みを指定する
+\AtBeginDvi{\special{pdf:mapfile texFonts.map}}
+
+\documentclass{jarticle}
+% jarticle.clsは/usr/share/texlive/texmf-dist/tex/platex/base/jarticle.clsにある．
+\begin{document}
+LaTexによる論文作成
+
+Japan
+
+平方根 $\sqrt{x}$
+\end{document}

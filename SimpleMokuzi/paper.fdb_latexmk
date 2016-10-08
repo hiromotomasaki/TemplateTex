@@ -1,0 +1,16 @@
+# Fdb version 3
+["dvipdf"] 1475913006 "paper.dvi" "paper.pdf" "paper" 1475913006
+  "paper.dvi" 1475913006 704 e8fdbb1a803e62a571c8e4cf326a1513 "latex"
+  (generated)
+  "paper.pdf"
+["latex"] 1475913006 "paper.tex" "paper.dvi" "paper" 1475913006
+  "/usr/share/texlive/texmf-dist/tex/platex/base/jarticle.cls" 1274206740 25507 0e6187042be739768097a38c29341b37 ""
+  "/usr/share/texlive/texmf-dist/tex/platex/base/jsize10.clo" 1274206740 9588 b611516b14eca6f3c9322f65167c7c24 ""
+  "paper.aux" 1475913006 134 5635b96f5664262244aa878eae2fc9e0 ""
+  "paper.tex" 1475913006 265 ab3c917a7542da566d1c6b6b2156b508 ""
+  "paper.toc" 1475913006 90 e140593d1f20d4ce9a25b8f36b9d3551 ""
+  (generated)
+  "paper.log"
+  "paper.aux"
+  "paper.dvi"
+  "paper.toc"

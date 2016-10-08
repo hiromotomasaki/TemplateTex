@@ -1,0 +1,31 @@
+%% LaTeX 文書ファイルの先頭辺りに special コマンドで読み込みを指定する
+\AtBeginDvi{\special{pdf:mapfile texFonts.map}}
+
+\documentclass{jarticle}
+% jarticle.clsは/usr/share/texlive/texmf-dist/tex/platex/base/jarticle.clsにある．
+
+\usepackage{jtygm}
+% bibを利用するときに警告をなくすために必要(./jtygm.sty))
+
+\begin{document}
+
+% 目次の表示
+\tableofcontents
+
+\section{A}
+LaTexによる論文作成
+
+平方根 $\sqrt{x}$
+
+Liberate Programming\cite{Knuth84literateprogramming}によると
+
+\section{B}
+
+% \begin{thebibliography}{99}
+% \bibitem{Knuth84literateprogramming} Reference 1
+% \end{thebibliography}
+\bibliographystyle{jplain}
+% jplain.bstは./usr/share/texlive/texmf-dist/pbibtex/bst/jplain.bstにある
+\bibliography{paper}
+% paper.bib
+\end{document}

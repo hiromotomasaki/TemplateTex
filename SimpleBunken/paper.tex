@@ -1,0 +1,20 @@
+\documentclass{jarticle}
+% jarticle.clsは/usr/share/texlive/texmf-dist/tex/platex/base/jarticle.clsにある．
+
+\usepackage{jtygm}
+% bibを利用するときに警告をなくすために必要(./jtygm.sty))
+
+\begin{document}
+LaTexによる論文作成
+
+平方根 $\sqrt{x}$
+
+Liberate Programming\cite{Knuth84literateprogramming}によると
+% \begin{thebibliography}{99}
+% \bibitem{Knuth84literateprogramming} Reference 1
+% \end{thebibliography}
+\bibliographystyle{jplain}
+% jplain.bstは./usr/share/texlive/texmf-dist/pbibtex/bst/jplain.bstにある
+\bibliography{paper}
+% paper.bib
+\end{document}
